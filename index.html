@@ -24,7 +24,7 @@ body {
   margin: 0;
 }
 
-/* Responsive Images */
+
 
 embed,
 iframe,
@@ -70,20 +70,10 @@ h6 {
   display: block;
 }
 
-/* Removes all decimals and discs from lists */
-
 ol,
 ul {
   list-style: none;
 }
-
-/* 
- * Completely resets form items
- * ----------------------------
- * Super hard reset that removes all borders
- * and radiuses of all form items (including
- * checkboxes and radios)
- */
 
 input,
 textarea,
@@ -225,25 +215,26 @@ body {
   </div>
 <script>
     const calculator = document.querySelector('.calculator')
-    const keys = calculator.querySelector('.cal__keys')
+    const keys = calculator.querySelector('.calculator__keys')
 
 
     keys.addEventListener('click', e => {
         if (e.target.matches('button')) {
             const key = e.target
             const action = key.dataset.action
-        }
-        if (!action) {
+            if (!action) {
             console.log('number key!')
-        }
-        if (
-            action === 'add' ||
-            action === 'subtract' ||
-            action === 'multiply' ||
-            action === 'divide'
-        ) {
+            }
+            if (
+                action === 'add' ||
+                action === 'subtract' ||
+                action === 'multiply' ||
+                action === 'divide'
+            ) {
             console.log('operator key!')
+            }
         }
+        
     })
 </script>
 </body>
