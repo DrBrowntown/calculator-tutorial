@@ -225,7 +225,7 @@ body {
             const action = key.dataset.action
             const keyContent = key.textContent
             const displayedNum = display.textContent
-            
+
             if (!action) {
                 if (displayedNum === '0') {
                     display.textContent = keyContent
@@ -241,7 +241,7 @@ body {
                 action === 'multiply' ||
                 action === 'divide'
             ) {
-            console.log('operator key!')
+                key.classList.add('is-depressed')
             }
             if (action === 'decimal') {
               display.textContent = displayedNum + '.'
@@ -252,6 +252,9 @@ body {
             if (action === 'calculate') {
               console.log('equal key!')
             }
+            // Remove .is-depressed class from all keys
+            Array.from(key.parentNode.children)
+                .forEach(k => k.classList.remove('is-depressed'))
         }
         
     })
