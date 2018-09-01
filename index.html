@@ -1,4 +1,4 @@
-df<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,19 +8,17 @@ df<!DOCTYPE html>
           display: grid; 
           
         }
-    /* --------------------
-     Add your styling here
-     -------------------- */
+  
     </style>
 </head>
 <body>
 <div class="calculator">
     <div class="cal_disply">0</div>
     <div class="cal_keys">...</div>
-     <button class="key--operator" data-action="add">+</button>
-      <button class="key--operator" data-action="subtract">-</button
+      <button class="key--operator" data-action="add">+</button>
+      <button class="key--operator" data-action="subtract">-</button>
       <button class="key--operator" data-action="multiply">&times;</button>
-      <button class="key--operator" data-action="divide">÷</button
+      <button class="key--operator" data-action="divide">÷</button>
       <button>7</button>
       <button>8</button>
       <button>9</button>
@@ -34,14 +32,17 @@ df<!DOCTYPE html>
       <button data-action="decimal">.</button>
       <button data-action="clear">AC</button>
       <button class="key--equal" data-action="calculate">=</button>
-    <!----------------------
-    Add your markup here
-    ------------------------>
+    
 </div>
 <script>
-    /* --------------------
-     Add your code here
-    --------------------- */
+    const calculator = document.querySelector(‘.calculator’)
+    const keys = calculator.querySelector(‘.calculator__keys’)
+    
+    keys.addEventListener(‘click’, e => {
+     if (e.target.matches(‘button’)) {
+       // Do something
+     }
+})
 </script>
 </body>
 </html>
