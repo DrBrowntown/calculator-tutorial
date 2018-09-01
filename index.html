@@ -4,281 +4,246 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
     <style>
-// NOTE: You don't need to mess around with 
-// CSS to follow the tutorial. Focus on the 
-// JavaScript instead!
-// =========================
-
-// Some personal resets
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 body {
-  margin: 0;
-}
-
-
-
-embed,
-iframe,
-img,
-object,
-video {
-  max-width: 100%;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-ol,
-li,
-p,
-pre,
-blockquote,
-figure,
-hr {
-  margin: 0;
-  padding-right: 0;
-  padding-left: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:focus {
-  outline: none;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  display: block;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-input,
-textarea,
-button {
-  border: 0;
-  border-radius: 0;
-  background-color: transparent;
-  font-size: inherit;
-  font-family: inherit;
-  font-weight: inherit;
-  outline: none;
-  appearance: none;
-  text-align: left;
-}
-
-input:hover,
-input:active,
-input:focus,
-textarea:hover,
-textarea:active,
-textarea:focus,
-button:hover,
-button:active,
-button:focus {
-  outline: none;
-}
-
-:root {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-html {
-  font-size: 175%;
-  font-weight: 300;
-  line-height: 1.3;
-}
-
-body {
-  align-items: center;
-  background-image: linear-gradient(236deg, #74ebd5, #acb6e5);
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-}
-
-.container {
-  max-width: 20em;
-}
-
-.container > p {
-  text-align: center;
+  width: 500px;
+  margin: 4% auto;
+  font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing: 5px;
+  font-size: 1.8rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .calculator {
-  border-radius: 12px;
-  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2em;
-  max-width: 15em;
-  overflow: hidden;
+  padding: 20px;
+  border:1px solid #ddd;
+  border-radius: 1px;
 }
 
-.calculator__display {
-  background-color: #222222;
-  color: #fff;
-  font-size: 1.714285714em;
-  padding: 0.5em 0.75em;
+.input {
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  height: 60px;
+  padding-right: 15px;
+  padding-top: 10px;
   text-align: right;
+  margin-right: 6px;
+  font-size: 2.5rem;
+  overflow-x: auto;
+  transition: all .2s ease-in-out;
 }
 
-.calculator__keys {
-  background-color: #999;
-  display: grid;
-  grid-gap: 1px;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.calculator__keys > * {
-  background-color: #fff;
-  padding: 0.5em 1.25em;
-  position: relative;
+.operators div {
+  display: inline-block;
+  border: 1px solid #bbb;
+  border-radius: 1px;
+  width: 80px;
   text-align: center;
+  padding: 10px;
+  margin: 20px 4px 10px 0;
+  cursor: pointer;
+  background-color: #ddd;
+  transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
 }
 
-.calculator__keys > *:active::before,
-.calculator__keys > .is-depressed::before {
-  background-color: rgba(0, 0, 0, 0.2);
-  bottom: 0;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5) inset;
-  content: "";
-  left: 0;
-  opacity: 0.3;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
+.operators div:hover {
+  background-color: #ddd;
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  border-color: #aaa;
 }
 
-.key--operator {
-  background-color: #eee;
+.leftPanel {
+  display: inline-block;
 }
 
-.key--equal {
-  background-image: linear-gradient(to bottom, #fe886a, #ff7033);
-  grid-column: -2;
-  grid-row: 2 / span 4;
+.numbers div {
+  display: inline-block;
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  width: 80px;
+  text-align: center;
+  padding: 10px;
+  margin: 10px 4px 10px 0;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
 }
+
+.numbers div:hover {
+  background-color: #f1f1f1;
+}
+
+.numbers div:active {
+  font-weight: bold;
+}
+
+div.equal {
+  display: inline-block;
+  border: 1px solid #3079ED;
+  border-radius: 1px;
+  width: 17%;
+  text-align: center;
+  padding: 127px 10px;
+  margin: 10px 6px 10px 0;
+  vertical-align: top;
+  cursor: pointer;
+  color: #FFF;
+  background-color: #4d90fe;
+  transition: all .2s ease-in-out;
+}
+
+div.equal:hover {
+  background-color: #307CF9;
+  border-color: #1857BB;
+}
+
 
   
     </style>
 </head>
 <body>
-<div class="container">
-    
-    <div class="calculator">
-      <div class="calculator__display">0</div>
-
-      <div class="calculator__keys">
-        <button class="key--operator" data-action="add">+</button>
-        <button class="key--operator" data-action="subtract">-</button>
-        <button class="key--operator" data-action="multiply">&times;</button>
-        <button class="key--operator" data-action="divide">÷</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>0</button>
-        <button data-action="decimal">.</button>
-        <button data-action="clear">AC</button>
-        <button class="key--equal" data-action="calculate">=</button>
+<div class="calculator">
+  <div class="input" id="input"></div>
+  <div class="buttons">
+    <div class="operators">
+      <div>+</div>
+      <div>-</div>
+      <div>&times;</div>
+      <div>&divide;</div>
+    </div>
+    <div class="leftPanel">
+      <div class="numbers">
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+      </div>
+      <div class="numbers">
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+      </div>
+      <div class="numbers">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </div>
+      <div class="numbers">
+        <div>0</div>
+        <div>.</div>
+        <div id="clear">C</div>
       </div>
     </div>
+    <div class="equal" id="result">=</div>
   </div>
+</div>
 <script>
-    const calculator = document.querySelector('.calculator')
-    const keys = calculator.querySelector('.calculator__keys')
-    const display = document.querySelector('.calculator__display')
+    // Let's first define the operators and their functions
+var operations = {
+  "÷": function(a,b) { return a/b;},
+  "×": function(a,b) { return a*b;},
+  "-": function(a,b) { return a-b;},
+  // using parseFloat is necessary, otherwise it will result in string concatenation 
+  "+": function(a,b) { return parseFloat(a)+parseFloat(b);}
+}
 
+var operatorChars = Object.keys(operations);
+var input = document.getElementById('input'); // input/output button
+var numbers = document.querySelectorAll('.numbers div'); // number buttons
+var operators = document.querySelectorAll('.operators div'); // operator buttons
+var result = document.getElementById('result'); // equal button
+var clear = document.getElementById('clear'); // clear button
+var resultDisplayed = false; // flag to keep an eye on what output is displayed
 
-    keys.addEventListener('click', e => {
-        if (e.target.matches('button')) {
-            const key = e.target
-            const action = key.dataset.action
-            const keyContent = key.textContent
-            const displayedNum = display.textContent
-            const previousKeyType = calculator.dataset.previousKeyType
+// adding click handlers to number buttons
+for (var i = 0; i < numbers.length; i++) {
+  numbers[i].addEventListener("click", function(e) {
+    // storing current input string and its last character in variables - used later
+    var currentString = input.innerHTML;
+    var lastChar = currentString[currentString.length - 1];
 
-            if (!action) {
-                if (displayedNum === '0' || previousKeyType === 'operator') {
-                    display.textContent = keyContent
-                } else {
-                    display.textContent = displayedNum + keyContent
-                }
-            
-            console.log('number key!')
-            }
-            if (
-                action === 'add' ||
-                action === 'subtract' ||
-                action === 'multiply' ||
-                action === 'divide'
-            ) {
-                key.classList.add('is-depressed')
-            // Add custom attribute
-                calculator.dataset.previousKeyType = 'operator'
-                calculator.dataset.firstValue = displayedNum
-                calculator.dataset.operator = action
-            }
-            if (action === 'decimal') {
-              display.textContent = displayedNum + '.'
-            }
-            if (action === 'clear') {
-              console.log('clear key!')
-            }
-            if (action === 'calculate') {
-              const firstValue = calculator.dataset.firstValue
-                const operator = calculator.dataset.operator
-                const secondValue = displayedNum
-                display.textContent = calculate(firstValue, operator, secondValue)
-            }
-            // Remove .is-depressed class from all keys
-            Array.from(key.parentNode.children)
-                .forEach(k => k.classList.remove('is-depressed'))
-        }
-        
-    })
-    const calculate = (n1, operator, n2) => {
-    let result = ''
-    if (operator === 'add') {
-        result = parseFloat(n1) + parseFloat(n2)
-    } else if (operator === 'subtract') {
-        result = parseFloat(n1) - parseFloat(n2)
-    } else if (operator === 'multiply') {
-        result = parseFloat(n1) * parseFloat(n2)
-    } else if (operator === 'divide') {
-        result = parseFloat(n1) / parseFloat(n2)
+    // if result is not diplayed, just keep adding
+    if (resultDisplayed === false) {
+      input.innerHTML += e.target.innerHTML;
+      
+    // if result is currently displayed and user pressed an operator
+    } else if (resultDisplayed === true && operatorChars.indexOf(lastChar) >= 0) {
+      
+      // we need to keep on adding to the string for next operation
+      resultDisplayed = false;
+      input.innerHTML += e.target.innerHTML;
+      
+    // if result is currently displayed and user pressed a number
+    } else {
+      
+      // we need clear the input string and add the new input to start the new opration
+      resultDisplayed = false;
+      input.innerHTML = e.target.innerHTML;
     }
-      return result
+
+  });
+}
+
+// adding click handlers to operator buttons
+for (var i = 0; i < operators.length; i++) {
+  operators[i].addEventListener("click", function(e) {
+
+    // storing current input string and its last character in variables - used later
+    var currentString = input.innerHTML;
+    var lastChar = currentString[currentString.length - 1];
+    // if last character entered is an operator, replace it with the currently pressed one
+    if (operatorChars.indexOf(lastChar) >= 0) {
+      var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
+      input.innerHTML = newString;
+      
+    // if this isn't the first key pressed
+    } else if (currentString.length !== 0) {
+      
+      // else just add the operator pressed to the input
+      input.innerHTML += e.target.innerHTML;
     }
+
+});
+}
+
+// on click of 'equal' button
+result.addEventListener("click", function() {
+
+  // this is the string that we will be processing eg. -10+26+33-56*34/23
+  var inputString = input.innerHTML;
+  // forming an array of numbers. eg for above string it will be: numbers = ["10", "26", "33", "56", "34", "23"]
+  var numbers = inputString.split(/\+|\-|\×|\÷/g);
+
+  // forming an array of operators. for above string it will be: operators = ["+", "+", "-", "*", "/"]
+  // first we replace all the numbers and dot with empty string and then split
+  var operators = inputString.replace(/[0-9]|\./g, "").split("");
+
+  // now we are looping through the array and doing one operation at a time.
+  // the operations will execute according to their order in the operatorChars array
+  // as we move we are alterning the original numbers and operators array
+  // the final element remaining in the array will be the output
+  var operatorChars = Object.keys(operations);
+  for (var i = 0; i < operatorChars.length; i++) {
+    var currentOperator = operatorChars[i];
+    var currentOperation = operations[currentOperator];
+    var nextOperationToExecute = operators.indexOf(currentOperator);
+    while (nextOperationToExecute !== -1) {
+      var nextResult = currentOperation(numbers[nextOperationToExecute], numbers[nextOperationToExecute + 1]);
+      numbers.splice(nextOperationToExecute, 2, nextResult);
+      operators.splice(nextOperationToExecute, 1);
+      var nextOperationToExecute = operators.indexOf(currentOperator);
+    }
+  }
+    
+  input.innerHTML = numbers[0]; // displaying the output
+  resultDisplayed = true; // turning flag if result is displayed
+});
+
+// clearing the input on press of clear
+clear.addEventListener("click", function() {
+  input.innerHTML = "";
+})
 </script>
 </body>
 </html>
