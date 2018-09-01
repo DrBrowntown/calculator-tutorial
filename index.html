@@ -242,6 +242,8 @@ body {
                 action === 'divide'
             ) {
                 key.classList.add('is-depressed')
+            // Add custom attribute
+                calculator.dataset.previousKeyType = 'operator'
             }
             if (action === 'decimal') {
               display.textContent = displayedNum + '.'
